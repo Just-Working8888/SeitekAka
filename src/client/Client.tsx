@@ -23,7 +23,7 @@ const Client: React.FC = () => {
     // Fetch data from JSON Server
     const fetchAreas = async () => {
         try {
-            const response = await axios.get('http://localhost:5888/consultationAreas');
+            const response = await axios.get('/api/consultationAreas');
             setAreas(response.data);
         } catch (error) {
             console.error('Error fetching consultation areas:', error);
@@ -32,7 +32,7 @@ const Client: React.FC = () => {
 
     const fetchConsultants = async () => {
         try {
-            const response = await axios.get('http://localhost:5888/consultants');
+            const response = await axios.get('/api/consultants');
             setConsultants(response.data);
         } catch (error) {
             console.error('Error fetching consultants:', error);

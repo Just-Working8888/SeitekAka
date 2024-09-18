@@ -18,7 +18,7 @@ const AdminPanel: React.FC = () => {
     // Получаем данные с сервера
     const fetchAreas = async () => {
         try {
-            const response = await axios.get('http://localhost:5888/consultationAreas');
+            const response = await axios.get('/api/consultationAreas');
             setAreas(response.data);
         } catch (error) {
             console.error('Ошибка при загрузке сфер консультаций:', error);
@@ -27,7 +27,7 @@ const AdminPanel: React.FC = () => {
 
     const fetchConsultants = async () => {
         try {
-            const response = await axios.get('http://localhost:5888/consultants');
+            const response = await axios.get('/api/consultants');
             setConsultants(response.data);
         } catch (error) {
             console.error('Ошибка при загрузке консультантов:', error);
@@ -50,10 +50,10 @@ const AdminPanel: React.FC = () => {
     const handleSaveConsultant = async (values: any) => {
         try {
             if (editingConsultant) {
-                await axios.put(`http://localhost:5888/consultants/${editingConsultant.id}`, values);
+                await axios.put(`/api/consultants/${editingConsultant.id}`, values);
                 message.success('Консультант успешно обновлен');
             } else {
-                await axios.post('http://localhost:5888/consultants', values);
+                await axios.post('/api/consultants', values);
                 message.success('Консультант успешно добавлен');
             }
             fetchConsultants();
@@ -67,7 +67,7 @@ const AdminPanel: React.FC = () => {
     // Добавление новой сферы консультации
     const handleAddArea = async (values: any) => {
         try {
-            await axios.post('http://localhost:5888/consultationAreas', values);
+            await axios.post('/api/consultationAreas', values);
             message.success('Сфера консультации успешно добавлена');
             fetchAreas();
             setIsAreaModalVisible(false);
@@ -80,7 +80,7 @@ const AdminPanel: React.FC = () => {
     // Удаление консультанта
     const handleDeleteConsultant = async (id: any) => {
         try {
-            await axios.delete(`http://localhost:5888/consultants/${id}`);
+            await axios.delete(`/api/consultants/${id}`);
             message.success('Консультант успешно удален');
             fetchConsultants();
         } catch (error) {
