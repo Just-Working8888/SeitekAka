@@ -72,9 +72,7 @@ const Client: React.FC = () => {
     );
     console.log('Selected Area:', selectedArea);
     console.log('Consultants:', consultants);
-    const filteredConsultants = selectedArea
-        ? consultants.filter((consultant: any) => consultant.area === selectedArea)
-        : consultants;
+    
     return (
         <Layout className="consultation-layout">
             <Layout.Header className="header">
@@ -145,12 +143,12 @@ const Client: React.FC = () => {
                             <Title level={3}>
                                 {t('consultantsForArea', { area: areas.find((area: any) => area.key === selectedArea)?.title_ru })}
                             </Title>
-                            {filteredConsultants.length === 0 ? (
-                                <Text>{t('noConsultants')}</Text>
+                            {loadingConsultants ? (
+                                <p>{t('loading')}...</p>
                             ) : (
                                 <List
                                     itemLayout="vertical"
-                                    dataSource={filteredConsultants}
+                                    dataSource={consultants.filter((consultant: any) => consultant.area === selectedArea)}
                                     renderItem={(consultant: any) => (
                                         <Card className="consultant-card">
                                             <List.Item>
