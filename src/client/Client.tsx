@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
     Layout, Button, Steps, Card, List, Typography,
     Row, Col, Space, Menu, Dropdown, message, QRCode,
@@ -6,55 +6,29 @@ import {
 } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { GlobalOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
-import axios from 'axios';
 import '../App.scss';
 import '../i18n';
+
+type Consultant = {
+    name: string;
+    description: string;
+};
+
+type Consultants = {
+    [key: string]: Consultant[];
+};
 
 const { Step } = Steps;
 const { Title, Text } = Typography;
 
-const Client: React.FC = () => {
+const App: React.FC = () => {
     const { t, i18n } = useTranslation();
     const [currentStep, setCurrentStep] = useState(0);
     const [selectedArea, setSelectedArea] = useState<string | null>(null);
-    const [areas, setAreas] = useState<any>([]);
-    const [consultants, setConsultants] = useState<any>([]);
-    const [loadingAreas, setLoadingAreas] = useState(false);
-    const [loadingConsultants, setLoadingConsultants] = useState(false);
 
-    const API_BASE_URL = 'https://seitek-aka-tyaz.vercel.app/api'
-
-    // Fetch data from server
-    const fetchAreas = async () => {
-        setLoadingAreas(true);
-        try {
-            const response = await axios.get(`${API_BASE_URL}/consultationAreas`);
-            setAreas(response.data);
-        } catch (error) {
-            console.error('Ошибка при загрузке сфер консультаций:', error);
-            message.error('Ошибка при загрузке сфер консультаций');
-        } finally {
-            setLoadingAreas(false);
-        }
-    };
-
-    const fetchConsultants = async () => {
-        setLoadingConsultants(true);
-        try {
-            const response = await axios.get(`${API_BASE_URL}/consultants`);
-            setConsultants(response.data);
-        } catch (error) {
-            console.error('Ошибка при загрузке консультантов:', error);
-            message.error('Ошибка при загрузке консультантов');
-        } finally {
-            setLoadingConsultants(false);
-        }
-    };
-
-    useEffect(() => {
-        fetchAreas();
-        fetchConsultants();
-    }, []);
+    // Получаем локализованные данные о консультантах
+    const consultants: any = t('consultantss', { returnObjects: true });
+    const consultationAreas: any = t('consultationAreas', { returnObjects: true });
 
     const next = () => setCurrentStep(prev => prev + 1);
     const prev = () => setCurrentStep(prev => prev - 1);
@@ -70,11 +44,7 @@ const Client: React.FC = () => {
             <Menu.Item key="kg">{t('kyrgyz')}</Menu.Item>
         </Menu>
     );
-    console.log('Selected Area:', selectedArea);
-    console.log('Consultants:', consultants);
-    const filteredConsultants = selectedArea
-        ? consultants.filter((consultant: any) => consultant.area === selectedArea)
-        : consultants;
+
     return (
         <Layout className="consultation-layout">
             <Layout.Header className="header">
@@ -115,21 +85,15 @@ const Client: React.FC = () => {
                     {currentStep === 1 && (
                         <div className="step-content">
                             <Title level={3}>{t('consultationArea')}</Title>
-                            {loadingAreas ? (
-                                <p>{t('loading')}...</p>
-                            ) : (
-                                <Row gutter={[8, 8]}>
-                                    {areas.map((area: any) => (
-                                        <Col xs={24} sm={12} md={8} key={area.id}>
-                                            <Card hoverable className="area-card" onClick={() => { setSelectedArea(area.key); next(); }}>
-                                                <Title level={4} style={{ fontSize: '14px' }}>
-                                                    {i18n.language === 'ru' ? area.title_ru : area.title_kg}
-                                                </Title>
-                                            </Card>
-                                        </Col>
-                                    ))}
-                                </Row>
-                            )}
+                            <Row gutter={[8, 8]}>
+                                {Object.keys(consultationAreas).map((areaKey) => (
+                                    <Col xs={24} sm={12} md={8} key={areaKey}>
+                                        <Card hoverable className="area-card" onClick={() => { setSelectedArea(areaKey); next(); }}>
+                                            <Title level={4} style={{ fontSize: '14px' }}>{consultationAreas[areaKey]}</Title>
+                                        </Card>
+                                    </Col>
+                                ))}
+                            </Row>
                             <br />
                             <Space>
                                 <Button onClick={prev} size="small" icon={<LeftOutlined />}>
@@ -142,28 +106,22 @@ const Client: React.FC = () => {
                     {/* Шаг 3: Список консультантов */}
                     {currentStep === 2 && selectedArea && (
                         <div className="step-content">
-                            <Title level={3}>
-                                {t('consultantsForArea', { area: areas.find((area: any) => area.key === selectedArea)?.title_ru })}
-                            </Title>
-                            {filteredConsultants.length === 0 ? (
-                                <Text>{t('noConsultants')}</Text>
-                            ) : (
-                                <List
-                                    itemLayout="vertical"
-                                    dataSource={filteredConsultants}
-                                    renderItem={(consultant: any) => (
-                                        <Card className="consultant-card">
-                                            <List.Item>
-                                                <List.Item.Meta
-                                                    avatar={<Avatar size={48} shape='square' />}
-                                                    title={consultant.name}
-                                                    description={i18n.language === 'ru' ? consultant.description_ru : consultant.description_kg}
-                                                />
-                                            </List.Item>
-                                        </Card>
-                                    )}
-                                />
-                            )}
+                            <Title level={3}>{t('consultantsForArea', { area: consultationAreas[selectedArea] })}</Title>
+                            <List
+                                itemLayout="vertical"
+                                dataSource={consultants[selectedArea]}
+                                renderItem={(consultant: any) => (
+                                    <Card className="consultant-card">
+                                        <List.Item>
+                                            <List.Item.Meta
+                                                avatar={<Avatar size={48} shape='square' />}
+                                                title={consultant.name}
+                                                description={consultant.description}
+                                            />
+                                        </List.Item>
+                                    </Card>
+                                )}
+                            />
                             <div className="additional-info">
                                 <Title level={4}>{t('contactInfo')}</Title>
                                 <Text>Элдияр: +996 (XXX) XXX-XXX</Text>
@@ -190,4 +148,4 @@ const Client: React.FC = () => {
     );
 };
 
-export default Client;
+export default App;
