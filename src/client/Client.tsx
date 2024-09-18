@@ -22,7 +22,7 @@ const Client: React.FC = () => {
     const [loadingAreas, setLoadingAreas] = useState(false);
     const [loadingConsultants, setLoadingConsultants] = useState(false);
 
-    const API_BASE_URL = 'https://seitek-aka-tyaz.vercel.app/api'
+    const API_BASE_URL = 'https://seitek-aka-tyaz.vercel.app'
 
     // Fetch data from server
     const fetchAreas = async () => {
