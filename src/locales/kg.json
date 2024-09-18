@@ -1,0 +1,83 @@
+{
+    "welcome": "Кош келиңиздер!",
+    "chooseLanguage": "Улантуу үчүн тилди тандаңыз.",
+    "consultations": "Кеңештер",
+    "language": "Тил",
+    "consultationArea": "Кеңеш берүү жааты",
+    "consultants": "Консультанттар",
+    "consultantsForArea": "Бул жааттагы консультанттар: {{area}}",
+    "contactInfo": "Байланыш маалыматы",
+    "qrCode": "Тез кирүү үчүн QR-код",
+    "next": "Андан ары",
+    "back": "Артка",
+    "russian": "Орусча",
+    "kyrgyz": "Кыргызча",
+    "allRightsReserved": "Бардык укуктар корголгон",
+    "consultationAreas": {
+        "strategyAndBusinessPlanning": "Стратегия жана бизнес-пландоо",
+        "marketingAndBranding": "Маркетинг жана брендинг",
+        "automation": "Автоматизация",
+        "energyEfficiency": "Энергияны үнөмдөө",
+        "allSectors": "Бардык секторлор"
+    },
+    "consultantss": {
+        "strategyAndBusinessPlanning": [
+            {
+                "name": "Алексей Иванов",
+                "description": "Бизнес-пландоо боюнча эксперт"
+            },
+            {
+                "name": "Мария Петрова",
+                "description": "Стратегия боюнча адис"
+            }
+        ],
+        "marketingAndBranding": [
+            {
+                "name": "Игорь Сидоров",
+                "description": "Маркетолог"
+            },
+            {
+                "name": "Анна Ким",
+                "description": "Бренд-менеджер"
+            }
+        ],
+        "automation": [
+            {
+                "name": "Дмитрий Смирнов",
+                "description": "Автоматизация боюнча адис"
+            },
+            {
+                "name": "Олег Лебедев",
+                "description": "Автоматизация инженери"
+            }
+        ],
+        "energyEfficiency": [
+            {
+                "name": "Сергей Кузнецов",
+                "description": "Энергияны үнөмдөө боюнча эксперт"
+            },
+            {
+                "name": "Наталья Котова",
+                "description": "Энергияны үнөмдөө боюнча кеңешчи"
+            }
+        ],
+        "allSectors": [
+            {
+                "name": "Алексей Иванов",
+                "description": "Бизнес-пландоо боюнча эксперт"
+            },
+            {
+                "name": "Анна Ким",
+                "description": "Бренд-менеджер"
+            },
+            {
+                "name": "Дмитрий Смирнов",
+                "description": "Автоматизация боюнча адис"
+            },
+            {
+                "name": "Сергей Кузнецов",
+                "description": "Энергияны үнөмдөө боюнча эксперт"
+            }
+        ]
+    }
+}

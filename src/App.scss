@@ -1,0 +1,125 @@
+.consultation-layout {
+  min-height: 100vh;
+  background-color: #f0f2f5;
+
+  .header {
+    background: #001529;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+
+    .logo {
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+
+  .content {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+
+    .consultation-card {
+      max-width: 900px;
+      width: 100%;
+      padding: 15px;
+      background-color: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+
+      .steps {
+        margin-bottom: 15px;
+      }
+
+      .step-content {
+        padding: 10px;
+
+        .language-buttons {
+          margin: 10px 0;
+          button {
+            margin-right: 10px;
+            padding: 6px 12px;
+          }
+        }
+      }
+
+      .consultant-card {
+        margin-bottom: 10px;
+      }
+
+      .additional-info,
+      .qr-section {
+        margin-top: 15px;
+        text-align: center;
+      }
+    }
+  }
+
+  .footer {
+    text-align: center;
+    background: #001529;
+    color: white;
+    padding: 8px 0;
+    font-size: 12px;
+  }
+}
+
+/* Адаптивные стили до 390px */
+@media (max-width: 390px) {
+  .content {
+    padding: 10px;
+
+    .consultation-card {
+      padding: 10px;
+
+      .step-content {
+        padding: 5px;
+
+        .language-buttons {
+          margin: 10px 0;
+          button {
+            font-size: 12px;
+            padding: 6px 8px;
+          }
+        }
+      }
+
+      .steps {
+        .ant-steps-item-title {
+          font-size: 12px;
+        }
+      }
+
+      .consultant-card {
+        margin-bottom: 10px;
+      }
+
+      .additional-info,
+      .qr-section {
+        margin-top: 10px;
+        font-size: 12px;
+      }
+
+      .qr-section .ant-qrcode {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  }
+
+  .header {
+    .logo {
+      font-size: 16px;
+    }
+
+    button {
+      font-size: 14px;
+    }
+  }
+
+  .footer {
+    font-size: 10px;
+  }
+}

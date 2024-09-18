@@ -1,0 +1,83 @@
+{
+    "welcome": "Добро пожаловать!",
+    "chooseLanguage": "Пожалуйста, выберите язык для продолжения.",
+    "consultations": "Консультации",
+    "language": "Язык",
+    "consultationArea": "Сфера консультации",
+    "consultants": "Консультанты",
+    "consultantsForArea": "Консультанты по сфере: {{area}}",
+    "contactInfo": "Контактная информация",
+    "qrCode": "QR-код для быстрого доступа",
+    "next": "Далее",
+    "back": "Назад",
+    "russian": "Русский",
+    "kyrgyz": "Кыргызский",
+    "allRightsReserved": "Все права защищены",
+    "consultationAreas": {
+        "strategyAndBusinessPlanning": "Стратегия и бизнес-планирование",
+        "marketingAndBranding": "Маркетинг и брендинг",
+        "automation": "Автоматизация",
+        "energyEfficiency": "Энергоэффективность",
+        "allSectors": "Все сферы"
+    },
+    "consultantss": {
+        "strategyAndBusinessPlanning": [
+            {
+                "name": "Алексей Иванов",
+                "description": "Эксперт по бизнес-планированию"
+            },
+            {
+                "name": "Мария Петрова",
+                "description": "Специалист по стратегии"
+            }
+        ],
+        "marketingAndBranding": [
+            {
+                "name": "Игорь Сидоров",
+                "description": "Маркетолог"
+            },
+            {
+                "name": "Анна Ким",
+                "description": "Бренд-менеджер"
+            }
+        ],
+        "automation": [
+            {
+                "name": "Дмитрий Смирнов",
+                "description": "Специалист по автоматизации"
+            },
+            {
+                "name": "Олег Лебедев",
+                "description": "Инженер по автоматизации"
+            }
+        ],
+        "energyEfficiency": [
+            {
+                "name": "Сергей Кузнецов",
+                "description": "Эксперт по энергоэффективности"
+            },
+            {
+                "name": "Наталья Котова",
+                "description": "Консультант по энергосбережению"
+            }
+        ],
+        "allSectors": [
+            {
+                "name": "Алексей Иванов",
+                "description": "Эксперт по бизнес-планированию"
+            },
+            {
+                "name": "Анна Ким",
+                "description": "Бренд-менеджер"
+            },
+            {
+                "name": "Дмитрий Смирнов",
+                "description": "Специалист по автоматизации"
+            },
+            {
+                "name": "Сергей Кузнецов",
+                "description": "Эксперт по энергоэффективности"
+            }
+        ]
+    }
+}

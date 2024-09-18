@@ -1,0 +1,59 @@
+{
+  "consultationAreas": [
+    {
+      "id": "1",
+      "key": "strategyAndBusinessPlanning",
+      "title_ru": "Стратегия и бизнес-планирование",
+      "title_kg": "Стратегия жана бизнес-пландоо"
+    },
+    {
+      "id": "2",
+      "key": "marketingAndBranding",
+      "title_ru": "Маркетинг и брендинг",
+      "title_kg": "Маркетинг жана брендинг"
+    },
+    {
+      "id": "cbf8",
+      "title_ru": "helllo",
+      "title_kg": "vdsvdsfv",
+      "key": "edede"
+    }
+  ],
+  "consultants": [
+    {
+      "id": "1",
+      "area": "strategyAndBusinessPlanning",
+      "name": "Алексей Иванов",
+      "description_ru": "Эксперт по бизнес-планированию",
+      "description_kg": "Бизнес-пландоо боюнча эксперт"
+    },
+    {
+      "id": "2",
+      "area": "marketingAndBranding",
+      "name": "Игорь Сидоров",
+      "description_ru": "Маркетолог",
+      "description_kg": "Маркетолог"
+    },
+    {
+      "id": "32e6",
+      "name": "Алексей Иванов",
+      "description_ru": "Эксперт по бизнес-планированию",
+      "description_kg": "Бизнес-пландоо боюнча эксперт",
+      "area": "strategyAndBusinessPlanning"
+    },
+    {
+      "id": "4930",
+      "name": "HAHAHAH",
+      "description_ru": "акулаьл",
+      "description_kg": "адк3аькуа",
+      "area": "edede"
+    },
+    {
+      "id": "a197",
+      "name": "bekbolot",
+      "description_ru": "Разраб",
+      "description_kg": "Програмист бала",
+      "area": "edede"
+    }
+  ]
+}
