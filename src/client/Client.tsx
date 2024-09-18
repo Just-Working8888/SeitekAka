@@ -124,12 +124,9 @@ const App: React.FC = () => {
                             />
                             <div className="additional-info">
                                 <Title level={4}>{t('contactInfo')}</Title>
-                                <Text>Элдияр: +996 (XXX) XXX-XXX</Text>
+                                <Text><a href="tel: +996 (XXX) XXX-XXX">Элдияр: +996 (XXX) XXX-XXX</a></Text>
                             </div>
-                            <div className="qr-section">
-                                <Title level={4}>{t('qrCode')}</Title>
-                                <QRCode value="https://yourwebsite.com" size={100} />
-                            </div>
+
                             <br />
                             <Space>
                                 <Button onClick={prev} size="small" icon={<LeftOutlined />}>
