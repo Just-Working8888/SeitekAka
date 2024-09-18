@@ -19,23 +19,35 @@ const Client: React.FC = () => {
     const [selectedArea, setSelectedArea] = useState<string | null>(null);
     const [areas, setAreas] = useState<any>([]);
     const [consultants, setConsultants] = useState<any>([]);
+    const [loadingAreas, setLoadingAreas] = useState(false);
+    const [loadingConsultants, setLoadingConsultants] = useState(false);
 
-    // Fetch data from JSON Server
+    const API_BASE_URL = 'https://seitek-aka-tyaz.vercel.app/api'
+
+    // Fetch data from server
     const fetchAreas = async () => {
+        setLoadingAreas(true);
         try {
-            const response = await axios.get('/api/consultationAreas');
+            const response = await axios.get(`${API_BASE_URL}/consultationAreas`);
             setAreas(response.data);
         } catch (error) {
-            console.error('Error fetching consultation areas:', error);
+            console.error('Ошибка при загрузке сфер консультаций:', error);
+            message.error('Ошибка при загрузке сфер консультаций');
+        } finally {
+            setLoadingAreas(false);
         }
     };
 
     const fetchConsultants = async () => {
+        setLoadingConsultants(true);
         try {
-            const response = await axios.get('/api/consultants');
+            const response = await axios.get(`${API_BASE_URL}/consultants`);
             setConsultants(response.data);
         } catch (error) {
-            console.error('Error fetching consultants:', error);
+            console.error('Ошибка при загрузке консультантов:', error);
+            message.error('Ошибка при загрузке консультантов');
+        } finally {
+            setLoadingConsultants(false);
         }
     };
 
@@ -99,17 +111,21 @@ const Client: React.FC = () => {
                     {currentStep === 1 && (
                         <div className="step-content">
                             <Title level={3}>{t('consultationArea')}</Title>
-                            <Row gutter={[8, 8]}>
-                                {areas.map((area: any) => (
-                                    <Col xs={24} sm={12} md={8} key={area.id}>
-                                        <Card hoverable className="area-card" onClick={() => { setSelectedArea(area.key); next(); }}>
-                                            <Title level={4} style={{ fontSize: '14px' }}>
-                                                {i18n.language === 'ru' ? area.title_ru : area.title_kg}
-                                            </Title>
-                                        </Card>
-                                    </Col>
-                                ))}
-                            </Row>
+                            {loadingAreas ? (
+                                <p>{t('loading')}...</p>
+                            ) : (
+                                <Row gutter={[8, 8]}>
+                                    {areas.map((area: any) => (
+                                        <Col xs={24} sm={12} md={8} key={area.id}>
+                                            <Card hoverable className="area-card" onClick={() => { setSelectedArea(area.key); next(); }}>
+                                                <Title level={4} style={{ fontSize: '14px' }}>
+                                                    {i18n.language === 'ru' ? area.title_ru : area.title_kg}
+                                                </Title>
+                                            </Card>
+                                        </Col>
+                                    ))}
+                                </Row>
+                            )}
                             <br />
                             <Space>
                                 <Button onClick={prev} size="small" icon={<LeftOutlined />}>
@@ -125,21 +141,25 @@ const Client: React.FC = () => {
                             <Title level={3}>
                                 {t('consultantsForArea', { area: areas.find((area: any) => area.key === selectedArea)?.title_ru })}
                             </Title>
-                            <List
-                                itemLayout="vertical"
-                                dataSource={consultants.filter((consultant: any) => consultant.area === selectedArea)}
-                                renderItem={(consultant: any) => (
-                                    <Card className="consultant-card">
-                                        <List.Item>
-                                            <List.Item.Meta
-                                                avatar={<Avatar size={48} shape='square' />}
-                                                title={consultant.name}
-                                                description={i18n.language === 'ru' ? consultant.description_ru : consultant.description_kg}
-                                            />
-                                        </List.Item>
-                                    </Card>
-                                )}
-                            />
+                            {loadingConsultants ? (
+                                <p>{t('loading')}...</p>
+                            ) : (
+                                <List
+                                    itemLayout="vertical"
+                                    dataSource={consultants.filter((consultant: any) => consultant.area === selectedArea)}
+                                    renderItem={(consultant: any) => (
+                                        <Card className="consultant-card">
+                                            <List.Item>
+                                                <List.Item.Meta
+                                                    avatar={<Avatar size={48} shape='square' />}
+                                                    title={consultant.name}
+                                                    description={i18n.language === 'ru' ? consultant.description_ru : consultant.description_kg}
+                                                />
+                                            </List.Item>
+                                        </Card>
+                                    )}
+                                />
+                            )}
                             <div className="additional-info">
                                 <Title level={4}>{t('contactInfo')}</Title>
                                 <Text>Элдияр: +996 (XXX) XXX-XXX</Text>
