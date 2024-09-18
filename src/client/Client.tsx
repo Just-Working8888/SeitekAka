@@ -70,7 +70,11 @@ const Client: React.FC = () => {
             <Menu.Item key="kg">{t('kyrgyz')}</Menu.Item>
         </Menu>
     );
-
+    console.log('Selected Area:', selectedArea);
+    console.log('Consultants:', consultants);
+    const filteredConsultants = selectedArea
+        ? consultants.filter((consultant: any) => consultant.area === selectedArea)
+        : consultants;
     return (
         <Layout className="consultation-layout">
             <Layout.Header className="header">
@@ -141,12 +145,12 @@ const Client: React.FC = () => {
                             <Title level={3}>
                                 {t('consultantsForArea', { area: areas.find((area: any) => area.key === selectedArea)?.title_ru })}
                             </Title>
-                            {loadingConsultants ? (
-                                <p>{t('loading')}...</p>
+                            {filteredConsultants.length === 0 ? (
+                                <Text>{t('noConsultants')}</Text>
                             ) : (
                                 <List
                                     itemLayout="vertical"
-                                    dataSource={consultants.filter((consultant: any) => consultant.area === selectedArea)}
+                                    dataSource={filteredConsultants}
                                     renderItem={(consultant: any) => (
                                         <Card className="consultant-card">
                                             <List.Item>
